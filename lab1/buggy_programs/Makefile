@@ -20,15 +20,17 @@ PROGS=ub leak bounds bounds-heap dangling sum
 
 ALL: $(PROGS)
 
-leak: leak.cc
+leak: leak.o
 
-dangling: dangling.cc
+dangling: dangling.o
 
-bounds: bounds.cc
+bounds: bounds.o
 
-ub: ub.cc
+bounds-heap: bounds-heap.o
 
-sum: sum.cc
+ub: ub.o
+
+sum: sum.o
 
 # Targets
 # Phony targets

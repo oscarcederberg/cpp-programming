@@ -2,6 +2,8 @@
 # the implicit rule for linking uses CC as the linker. g++ can be
 # changed to clang++.
 CXX = g++
+# CXX = clang++
+# CXX = /opt/homebrew/opt/llvm/bin/clang++
 CC  = $(CXX)
 
 # Define preprocessor, compiler, and linker flags. Uncomment the # lines
@@ -17,11 +19,16 @@ LDFLAGS =   -g
 # LDFLAGS +=  -stdlib=libc++
 
 PROGS=ub leak bounds bounds-heap dangling sum sum-alt bounds-alt bounds-heap-alt
+#The stand-alone leak sanitizer is not supported on some platforms.
+#Then use the full address-sanitizer, and run with detect_leaks=true
+#in ASAN_OPTIONS. (see the rule test_leak).
+# LEAK_OPT=-fsanitize=address
+LEAK_OPT=-fsanitize=leak
 
 ALL: $(PROGS)
 
 leak: leak.cc
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -fsanitize=leak -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $(LEAK_OPT) -o $@ $<
 
 dangling: dangling.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -fsanitize=address -o $@ $<
@@ -47,9 +54,11 @@ sum: sum.cc
 sum-alt: sum.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -fsanitize=address -o $@ $<
 
+test_leak: leak
+	ASAN_OPTIONS='detect_leaks=true' ./leak
 # Targets
 # Phony targets
-.PHONY: all clean
+.PHONY: all clean test_leak
 
 # Standard clean
 clean:

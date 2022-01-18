@@ -22,11 +22,13 @@ Demonstration:
 
 First build the programs using Makefile, and run them.
 
-Then, first do make clean and then build them using Makefile.sanitizers 
-(make -f Makefile.sanitizers) 
+Then, first do make clean and then build them using Makefile.sanitizers
+(make -f Makefile.sanitizers). Please note that on some systems, e.g.
+macs and in particular macs with Apple silicon, the leak sanitizer does
+not directly work. See the Makefile.sanitizers for details.
 
 Run the programs again, and see if the errors are detected. Try to understand
-the diagnostics pringed when the sanitizer detects an error. 
+the diagnostics printed when the sanitizer detects an error.
 
 Note that the different sanitizers may produce different error messages
 for the same problem. Compare the output from sum and sum_alt (which are
@@ -57,8 +59,8 @@ may use different versions of the sanitizers. If you have installed a more recen
 compiler version, you may need to tell cmake to use that.
 By default, cmake will use the system's default compiler. To specify which
 compiler to use, you can add (for gcc)
--DCMAKE_CXX_COMPILER=g++ 
--DCMAKE_C_COMPILER=gcc 
+-DCMAKE_CXX_COMPILER=g++
+-DCMAKE_C_COMPILER=gcc
 or, for clang:
--DCMAKE_CXX_COMPILER=clang++ 
--DCMAKE_C_COMPILER=clang 
+-DCMAKE_CXX_COMPILER=clang++
+-DCMAKE_C_COMPILER=clang

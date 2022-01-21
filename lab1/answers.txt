@@ -1,0 +1,8 @@
+A4:
+    > g++ -std=c++11 -o separate_main separate_main.cc 
+    /usr/bin/ld: /tmp/ccEXwThv.o: in function `main':
+    separate_main.cc:(.text+0x46): undefined reference to `the_function(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+    collect2: error: ld returned 1 exit status
+
+this seems to suggest that it is the linker (ld) that fails, which makes sense. the assembler should have
+no issue translating the object file into machine code. the linker will, however, notice that there is no definition to the_function. this is because we don't include the object file 'separate_fn.o'.

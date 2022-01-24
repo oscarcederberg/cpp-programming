@@ -6,3 +6,6 @@ A4:
 
 this seems to suggest that it is the linker (ld) that fails, which makes sense. the assembler should have
 no issue translating the object file into machine code. the linker will, however, notice that there is no definition to the_function. this is because we don't include the object file 'separate_fn.o'.
+
+A10:
+Google Sanitizer seems to catch a wider variety of errors than valgrind. valgrind gave no errors for bounds, but do for the other. with lldb, viewing the stack trace is more interactive and can be done with gui, while with gs/val you have to yourself check the source.

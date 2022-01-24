@@ -1,0 +1,1 @@
+add_library(liblab coding.cc list.cc)

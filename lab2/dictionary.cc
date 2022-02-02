@@ -10,23 +10,32 @@
 
 Dictionary::Dictionary() {
 	std::ifstream infile{"./words.txt"};
-	std::string word;
-	std::string trigram;
+	std::string parsedWord;
+	size_t wordLength;
+	std::string parsedTrigram;
 	size_t trigramsCount;
 
-	while (infile >> word) {
-		words.insert(word);
+	while (infile >> parsedWord) {
+		wordLength = parsedWord.length();
+		if(wordLength < DICTIONARY_MAX_WORD_LENGTH){
+			std::vector<std::string> parsedTrigrams{};
+			
+			infile >> trigramsCount;
+			for (size_t i = 0; i < trigramsCount; i++) {
+				infile >> parsedTrigram;
+				
+				parsedTrigrams.push_back(parsedTrigram);
+			}
 
-		infile >> trigramsCount;
-		for (size_t i = 0; i < trigramsCount; i++) {
-			infile >> trigram;
-			// TODO: Add trigrams to dictionary.
+			Word word{parsedWord, parsedTrigrams};
+			words[wordLength].push_back(word);
+			s_words.insert(parsedWord);
 		}
 	}
 }
 
 bool Dictionary::contains(const std::string& word) const {
-	return words.find(word) != words.end();
+	return s_words.count(word);	
 }
 
 void add_trigram_suggestions(std::vector<std::string>& suggestions, const std::string& word){

@@ -23,7 +23,7 @@ void check_word(const std::string& word, const Dictionary& dict)
     }
 }
 int main() {
-	Dictionary dict;
+	Dictionary dict{};
 	std::string word;
 	while (std::cin >> word) {
 		transform(word.begin(), word.end(), word.begin(), ::tolower);

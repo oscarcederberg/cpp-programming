@@ -19,8 +19,8 @@ std::vector<std::string> process_word_trigrams(std::string& word) {
 }
 
 int main() {
-    std::ifstream infile("/usr/share/dict/words");
-    std::ofstream outfile("./words.txt");
+    std::ifstream infile{"/usr/share/dict/words"};
+    std::ofstream outfile{"./words.txt"};
     std::string word;
 
     while (infile >> word) {

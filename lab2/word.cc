@@ -1,16 +1,14 @@
 #include <string>
 #include <vector>
+
 #include "word.h"
 
-using std::vector;
-using std::string;
+Word::Word(const std::string& w, const std::vector<std::string>& t) {}
 
-Word::Word(const string& w, const vector<string>& t) {}
-
-string Word::get_word() const {
-	return string();
+std::string Word::get_word() const {
+	return std::string();
 }
 
-unsigned int Word::get_matches(const vector<string>& t) const {
+unsigned int Word::get_matches(const std::vector<std::string>& t) const {
 	return 0;
 }

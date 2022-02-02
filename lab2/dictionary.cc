@@ -3,20 +3,33 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+
 #include "word.h"
 #include "dictionary.h"
-
-using std::string;
-using std::vector;
 
 Dictionary::Dictionary() {
 }
 
-bool Dictionary::contains(const string& word) const {
+bool Dictionary::contains(const std::string& word) const {
 	return true;
 }
 
-vector<string> Dictionary::get_suggestions(const string& word) const {
-	vector<string> suggestions;
+void add_trigram_suggestions(std::vector<std::string>& suggestions, const std::string& word){
+
+}
+
+void rank_suggestions(std::vector<std::string>& suggestions, const std::string& word){
+
+}
+
+void trim_suggestions(std::vector<std::string>& suggestions){
+
+}
+
+std::vector<std::string> Dictionary::get_suggestions(const std::string& word) const {
+	std::vector<std::string> suggestions;
+	add_trigram_suggestions(suggestions, word);
+	rank_suggestions(suggestions, word);
+	trim_suggestions(suggestions);
 	return suggestions;
 }

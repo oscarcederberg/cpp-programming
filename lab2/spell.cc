@@ -5,32 +5,27 @@
 #include <cctype>
 #include "dictionary.h"
 
-using std::string;
-using std::vector;
-using std::cin;
-using std::cout;
-using std::endl;
-
-void check_word(const string& word, const Dictionary& dict)
+void check_word(const std::string& word, const Dictionary& dict)
 {
     if (dict.contains(word)) {
-        cout << "Correct." << endl;
+        std::cout << "Correct." << std::endl;
     } else {
-        vector<string> suggestions = dict.get_suggestions(word);
+        std::vector<std::string> suggestions = dict.get_suggestions(word);
+        
         if (suggestions.empty()) {
-            cout << "Wrong, no suggestions." << endl;
+            std::cout << "Wrong, no suggestions." << std::endl;
         } else {
-            cout << "Wrong. Suggestions:" << endl;
+            std::cout << "Wrong. Suggestions:" << std::endl;
             for (const auto& w : suggestions) {
-                cout << "    " << w << endl;
+                std::cout << "    " << w << std::endl;
             }
         }
     }
 }
 int main() {
 	Dictionary dict;
-	string word;
-	while (cin >> word) {
+	std::string word;
+	while (std::cin >> word) {
 		transform(word.begin(), word.end(), word.begin(), ::tolower);
         check_word(word, dict);
 	}

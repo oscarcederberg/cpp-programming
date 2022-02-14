@@ -63,7 +63,7 @@ void Dictionary::add_trigram_suggestions(std::vector<std::string>& suggestions, 
 			suggestions.push_back(wordWithTrigrams.get_word());
 		}
 	}
-	if (wordLength - 1 > 0) {
+	if (wordLength > 1) {
 		for (auto wordWithTrigrams : words[wordLength - 1]) {
 			if (wordWithTrigrams.get_matches(trigrams) >= trigrams.size() / 2) {
 				suggestions.push_back(wordWithTrigrams.get_word());
@@ -110,8 +110,7 @@ void Dictionary::rank_suggestions(std::vector<std::string>& suggestions, const s
 	}
 
 	std::sort(suggestions_distances.begin(), suggestions_distances.end());
-	suggestions.clear();
-	std::copy(suggestions_distances.begin(), suggestions_distances.end(), std::back_inserter(suggestions));
+	std::copy(suggestions_distances.begin(), suggestions_distances.end(), suggestions.begin());
 }
 
 void Dictionary::trim_suggestions(std::vector<std::string>& suggestions) const {

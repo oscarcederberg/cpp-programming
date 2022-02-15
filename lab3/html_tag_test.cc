@@ -15,9 +15,9 @@ int main() {
     run_test("test/html_tag/full.html", "test/html_tag/full.ans");
 }
 
-void run_test(std::string input, std::string answer) {
+void run_test(std::string input, std::string expected) {
     std::ifstream testFile{input};
-    std::ifstream ansFile{answer};
+    std::ifstream ansFile{expected};
     std::ostringstream testStream{};
     std::ostringstream ansStream{};
 

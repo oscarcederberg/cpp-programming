@@ -14,15 +14,22 @@ Date::Date() {
 Date::Date(int y, int m, int d) {}
 
 int Date::getYear() const {
-	return 0;
+	return year;
 }
 
 int Date::getMonth() const {
-	return 0;
+	return month;
 }
 
 int Date::getDay() const {
-	return 0;
+	return day;
+}
+
+std::ostream& operator<<(std::ostream& output, Date date) {
+	return output;
+}
+std::istream& operator>>(std::istream& input, Date date) {
+	return input;
 }
 
 void Date::next() {

@@ -29,8 +29,8 @@ all: $(PROGS)
 html_tag_test: html_tag_test.o html_tag.o
 sieve_erat_test: sieve_erat_test.o sieve_erat.o
 date_test: date_test.o date.o
-to_string_test: to_string_test.o to_string.o
-string_cast_test: string_cast_test.o string_cast.o
+to_string_test: to_string_test.o
+string_cast_test: string_cast_test.o
 
 # Phony targets
 .PHONY: all clean

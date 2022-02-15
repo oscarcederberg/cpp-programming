@@ -3,7 +3,7 @@
 
 #include "string_cast.h"
 
-template<class T>
+template <class T>
 void run_test(std::string string, T expected);
 
 int main() {
@@ -14,14 +14,15 @@ int main() {
 template<class T>
 void run_test(std::string string, T expected) {
     bool passed = true;
+    T actual;
     try {
-        T actual = string_cast<T>(string);
+        actual = string_cast<T>(string);
     } catch(const std::invalid_argument& e) {
-        passed = false
+        passed = false;
     }
     
     std::cout << string << ": ";
-    if (passed) {
+    if (passed && actual == expected) {
         std::cout << "passed" << std::endl;
     } else {
         std::cout << "failed" << std::endl;

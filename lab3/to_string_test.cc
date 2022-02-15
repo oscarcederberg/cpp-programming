@@ -3,12 +3,14 @@
 
 #include "to_string.h"
 
-template<class T>
+template <class T>
 void run_test(T object, std::string expected);
 
 int main() {
     double d = 1.234;
+    int i = 1234;
     run_test(d, "1.234");
+    run_test(i, "1234");
 }
 
 template<class T>

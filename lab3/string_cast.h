@@ -3,7 +3,9 @@
 
 #include <string>
 
-template<class T>
+template <class T>
 T string_cast(std::string string);
+
+#include "string_cast.tpp"
 
 #endif

@@ -1,3 +1,6 @@
+#ifndef STRING_CAST_T
+#define STRING_CAST_T
+
 #include <string>
 #include <sstream>
 #include <stdexcept>
@@ -12,3 +15,5 @@ T string_cast(std::string string) {
         throw std::invalid_argument("Could not cast to type");
     }
 }
+
+#endif

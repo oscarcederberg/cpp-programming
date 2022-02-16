@@ -6,7 +6,7 @@
 
 class SieveOfErat {
 public:
-    SieveOfErat(int number);
+    SieveOfErat(size_t count);
     std::vector<int> get_primes() const;
     int get_larget_prime() const;
 private:

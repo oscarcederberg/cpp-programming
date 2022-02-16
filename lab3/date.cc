@@ -1,4 +1,6 @@
 #include <ctime>  // time and localtime
+#include <sstream>
+#include <iomanip>
 #include "date.h"
 
 int Date::daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -11,7 +13,11 @@ Date::Date() {
 	day = locTime->tm_mday;
 }
 
-Date::Date(int y, int m, int d) {}
+Date::Date(int y, int m, int d) {
+	year = std::max(1970, y);
+	month = std::max(1, std::min(m, 12));
+	day = std::max(1, std::min(d, daysPerMonth[month - 1]));
+}
 
 int Date::getYear() const {
 	return year;
@@ -25,13 +31,42 @@ int Date::getDay() const {
 	return day;
 }
 
-std::ostream& operator<<(std::ostream& output, Date date) {
+std::ostream& operator<<(std::ostream& output, Date& date) {
+	output << date.year << "-";
+	output << std::setfill('0') << std::setw(2) << date.month << "-";
+	output << std::setfill('0') << std::setw(2) << date.day;
+
 	return output;
 }
-std::istream& operator>>(std::istream& input, Date date) {
+
+bool in_range(int x, int low, int high) {
+    return x >= low && x <= high;
+}
+
+std::istream& operator>>(std::istream& input, Date& date) {
+	int year, month, day;
+	if (input >> year && input >> month && input >> day && 
+		year >= 1970 && in_range(-month, 1, 12) && in_range(-day, 1, Date::daysPerMonth[- month - 1])) {	
+			date.year = year;
+			date.month = -month;
+			date.day = -day;
+			input.setstate(std::ios_base::goodbit);
+	} else {
+		input.setstate(std::ios_base::failbit);
+	}
+
 	return input;
 }
 
 void Date::next() {
+	day++;
+	if (day > daysPerMonth[month - 1]) {
+		day = 1;
+		month++;
+		if (month > 12) {
+			month = 1;
+			year++;
+		}
+	}
 }
 

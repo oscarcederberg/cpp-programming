@@ -11,8 +11,8 @@ public:
 	int getMonth() const;      // get the month
 	int getDay() const;        // get the day
 	void next();               // advance to next day
-	friend std::ostream& operator<<(std::ostream& output, Date date);
-	friend std::istream& operator>>(std::istream& input, Date date);
+	friend std::ostream& operator<<(std::ostream& output, Date& date);
+	friend std::istream& operator>>(std::istream& input, Date& date);
 
 private:
 	int year;  // the year (four digits)

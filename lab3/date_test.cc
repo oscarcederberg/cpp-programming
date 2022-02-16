@@ -34,9 +34,9 @@ int main() {
 			// restore stream state and ignore the rest of the line
 			cin.clear();
 			cin.ignore(10000, '\n');
-		}
-		else {
+		} else {
 			cout << "Output: " << aDate << endl;
+			cont = false;
 		}
 	}
 	

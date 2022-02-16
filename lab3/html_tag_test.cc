@@ -10,9 +10,9 @@ void run_test(std::string input, std::string answer);
 
 int main() {
     std::cout << "Running tests..." << std::endl;
-    run_test("test/html_tag/tag.html", "test/html_tag/tag.ans");
-    run_test("test/html_tag/char.html", "test/html_tag/char.ans");
-    run_test("test/html_tag/full.html", "test/html_tag/full.ans");
+    run_test("test/html_tag/tag", "test/html_tag/tag.ans");
+    run_test("test/html_tag/char", "test/html_tag/char.ans");
+    run_test("test/html_tag/full", "test/html_tag/full.ans");
 }
 
 void run_test(std::string input, std::string expected) {

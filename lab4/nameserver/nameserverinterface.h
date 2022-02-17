@@ -1,15 +1,13 @@
-/*
- * Interface NameServerInterface -- all name server implementations must
- * implement this interface.
- */
 #ifndef NAME_SERVER_INTERFACE_H
 #define NAME_SERVER_INTERFACE_H
 
 #include <string>
+#include <utility>
 
 using HostName = std::string;
 using IPAddress = unsigned int;
 const IPAddress NON_EXISTING_ADDRESS = 0;
+using NameEntry = std::pair<HostName, IPAddress>;
 
 class NameServerInterface {
 public:

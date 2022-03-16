@@ -45,15 +45,38 @@ bool in_range(int x, int low, int high) {
 
 std::istream& operator>>(std::istream& input, Date& date) {
 	int year, month, day;
-	if (input >> year && input >> month && input >> day && 
-		year >= 1970 && in_range(-month, 1, 12) && in_range(-day, 1, Date::daysPerMonth[- month - 1])) {	
-			date.year = year;
-			date.month = -month;
-			date.day = -day;
-			input.setstate(std::ios_base::goodbit);
-	} else {
+	char delimiter;
+
+	if (!(input >> year) || !(year >= 1970)) {
 		input.setstate(std::ios_base::failbit);
+		return input;
 	}
+
+	delimiter = input.get();
+	if (delimiter != '-') {
+		input.setstate(std::ios_base::failbit);
+		return input;	
+	}
+
+	if (!(input >> month) || !(in_range(month, 1, 12))) {
+		input.setstate(std::ios_base::failbit);
+		return input;
+	}
+
+	delimiter = input.get();
+	if (delimiter != '-') {
+		input.setstate(std::ios_base::failbit);
+		return input;	
+	}
+
+	if (!(input >> day) || !(in_range(day, 1, Date::daysPerMonth[date.month]))) {
+		input.setstate(std::ios_base::failbit);
+		return input;
+	}
+
+	date.year = year;
+	date.month = month;
+	date.day = day;
 
 	return input;
 }

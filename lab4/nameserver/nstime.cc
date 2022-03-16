@@ -92,7 +92,10 @@ int main() {
 	 * The hash table implementation. The size of the hash table is
 	 * a parameter to the constructor.
 	 */
-	HNS hns(17441);
+	HNS hns1(17441);
+	HNS hns2(9000);
+	HNS hns3(4500);
+	HNS hns4(24000);
 	
 	/*
 	 * data is a vector containing the name/address pairs. Used by the
@@ -118,7 +121,10 @@ int main() {
 		vns.insert(name, nbr);
 		mns.insert(name, nbr);
 		umns.insert(name, nbr);
-		hns.insert(name, nbr);
+		hns1.insert(name, nbr);
+		hns2.insert(name, nbr);
+		hns3.insert(name, nbr);
+		hns4.insert(name, nbr);
 	}
 	cout << " read " << data.size() << " words." << endl;
 	
@@ -153,8 +159,23 @@ int main() {
 	avgTime = measureTime(umns, data, nbrSearches, seed);
 	cout << "Average search time (ms): " << avgTime << endl;
 	
-	cout << "Test hash. Number of searches: ";
+	cout << "Test hash (170k). Number of searches: ";
 	cin >> nbrSearches;
-	avgTime = measureTime(hns, data, nbrSearches, seed);
+	avgTime = measureTime(hns1, data, nbrSearches, seed);
+	cout << "Average search time (ms): " << avgTime << endl;
+	
+	cout << "Test hash (90k). Number of searches: ";
+	cin >> nbrSearches;
+	avgTime = measureTime(hns2, data, nbrSearches, seed);
+	cout << "Average search time (ms): " << avgTime << endl;
+	
+	cout << "Test hash (45k). Number of searches: ";
+	cin >> nbrSearches;
+	avgTime = measureTime(hns3, data, nbrSearches, seed);
+	cout << "Average search time (ms): " << avgTime << endl;
+	
+	cout << "Test hash (240k). Number of searches: ";
+	cin >> nbrSearches;
+	avgTime = measureTime(hns4, data, nbrSearches, seed);
 	cout << "Average search time (ms): " << avgTime << endl;
 }
